@@ -5,8 +5,8 @@ const Nav = ({isOpen}) => {
 
 
   return (
-    <nav style={{ display: isOpen ? "block" : "none" }} className='w-9/12 h-screen absolute bg-blue-100' >
-        <ul className='h-auto pt-40 pb-60'>
+    <nav style={{ display: isOpen ? "block" : "none" }} className='w-9/12 h-screen absolute bg-slate-50 ' >
+        <ul className='h-auto pt-20 pb-60'>
             <li className="mx-4 py-4 bd-line">HOME</li>
             <li className="mx-4 py-4 bd-line">
             <div className='flex justify-between'>PARTY
