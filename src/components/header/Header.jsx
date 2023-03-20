@@ -11,9 +11,9 @@ const Header = () => {
 
 
   return (
-    <header className='relative'>
+    <header className='fixed w-full z-30 '>
       <Nav isOpen={isOpen} />
-      <div className='flex justify-between py-2 px-4 bg-slate-400'>
+      <div className='flex justify-between py-2 px-4'>
       <span className='z-50 burger'><Hamburger size={25} toggled={isOpen} toggle={setOpen} /></span>
       <h1 className="text-2xl">BIG DAYS BY ASHA</h1>
       <img className="w-7" src={logo} alt="logo" />
