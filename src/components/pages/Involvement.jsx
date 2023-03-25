@@ -17,7 +17,7 @@ export const Involvement = () => {
 
   return (
     <div>
-        <img id="involvement_img" ref={imageRef} src={involvement_img} alt="involvement image" className='w-screen mx-auto obj object-cover' />
+        <img id="involvement_img" ref={imageRef} src={involvement_img} alt="involvement image" className='h-screen mx-auto obj object-cover' />
           {/* <div className='w-screen bg-white '> this is  it</div> */}
     </div>
   )

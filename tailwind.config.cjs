@@ -9,6 +9,9 @@ module.exports = {
       md: '768px',
       lg: '976px',
       xl: '1440px'},
+      fontFamily: {
+        'poppins': 'poppins',
+      },
     extend: {
       color: {
         armyGreen: "#665E28",
