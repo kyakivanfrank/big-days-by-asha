@@ -13,6 +13,9 @@ module.exports = {
         'poppins': 'poppins',
       },
     extend: {
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
       color: {
         armyGreen: "#665E28",
         White: "#FCFCFA",
