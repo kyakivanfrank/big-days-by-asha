@@ -57,7 +57,7 @@ const callouts = [
     imageSrc : Personalized,
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
-    css: 'col-start-2'
+    css: ''
   },
 ]
 
@@ -71,9 +71,9 @@ export const Categories = () => {
         <div className="mx-auto max-w-2xl py-8  sm:py-12 lg:max-w-none lg:py-20">
           <h2 className="text-2xl font-bold text-gray-900">What's in plan</h2>
 
-          <div className="mt-6 lg:flex mx-auto grid grid-cols-3 bg-white rounded justify-center">
+          <div className="mt-6 lg:flex mx-auto grid grid-cols-3 lg:gap-3 gap-2 justify-center">
             {callouts.map((callout, index) => (
-              <div key={index} className={`p-4 ${callout.css}`}>
+              <div key={index} className={`p-4 bg-white rounded-lg ${callout.css}`}>
                 <div className="mx-auto group-hover:opacity-75 ">
                   <img
                     src={callout.imageSrc}
