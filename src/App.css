@@ -39,3 +39,9 @@ margin-left: -10px;
 .foc:active, .foc:active, .foc:visited{
 mix-blend-mode: luminosity
 }
+
+.text-overflow{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis
+}

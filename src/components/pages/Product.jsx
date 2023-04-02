@@ -1,62 +1,65 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 
 import categoryImg from '../../assets/panaroma.jpg'
 import categoryImg1 from '../../assets/panaroma1.jpg'
 import categoryImg12 from '../../assets/panaroma12.png'
+import { OurContext } from '../../Root'
 
 
-const product = {
-  name: 'Baby Shower',
-  price: '500 AED',
-  href: '#',
-  breadcrumbs: [
-    {  name: 'Categories', href: '#' }
-  ],
-  images: [
-    {
-      src: categoryImg12,
-      alt: 'Model wearing plain white basic tee.',
-      css: 'col-span-2'
-    },
-      {
-      src: categoryImg,
-      alt: 'Model wearing plain white basic tee.',
-      css: 'row-span-2 hidden'
-    },
-    {
-    src: categoryImg1,
-    alt: 'Model wearing plain white basic tee.',
-    css: 'hidden'
-      },
-      {
-  src: categoryImg,
-  alt: 'Model wearing plain white basic tee.',
-  css: 'hidden'
-    }
-  ],
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
-  ],
-  attendants: [
-    { name: '5', choice: true },
-    { name: '10', choice: true },
-    { name: '20+', choice: true }
-  ],
-  description:
-    'In this package, It requires a simple decoration with a small number of people maximum 10, which comes with 50 ballons (ordinary ballons) with a custom name in an indoor venue, with a simple back and 2 flowers. this setup is suitable for aeonmical baby shower',
-  highlights: [
-    'Upto 50 ordinary balloons',
-    'Customa baby name',
-    'circular layout with simple backdrop',
-    '2 rose flowers',
-  ],
-  details:
-    'this is the users description, The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-}
+
+
+// const product = {
+//   name: 'Baby Shower',
+//   price: '500 AED',
+//   href: '#',
+//   breadcrumbs: [
+//     {  name: 'Categories', href: '#' }
+//   ],
+//   images: [
+//     {
+//       src: categoryImg12,
+//       alt: 'Model wearing plain white basic tee.',
+//       css: 'col-span-2'
+//     },
+//       {
+//       src: categoryImg,
+//       alt: 'Model wearing plain white basic tee.',
+//       css: 'row-span-2 hidden'
+//     },
+//     {
+//     src: categoryImg1,
+//     alt: 'Model wearing plain white basic tee.',
+//     css: 'hidden'
+//       },
+//       {
+//   src: categoryImg,
+//   alt: 'Model wearing plain white basic tee.',
+//   css: 'hidden'
+//     }
+//   ],
+//   colors: [
+//     { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+//     { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
+//     { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+//   ],
+//   attendants: [
+//     { name: '5', choice: true },
+//     { name: '10', choice: true },
+//     { name: '20+', choice: true }
+//   ],
+//   description:
+//     'In this package, It requires a simple decoration with a small number of people maximum 10, which comes with 50 ballons (ordinary ballons) with a custom name in an indoor venue, with a simple back and 2 flowers. this setup is suitable for aeonmical baby shower',
+//   highlights: [
+//     'Upto 50 ordinary balloons',
+//     'Customa baby name',
+//     'circular layout with simple backdrop',
+//     '2 rose flowers',
+//   ],
+//   details:
+//     'this is the users description, The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+// }
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -67,7 +70,13 @@ function classNames(...classes) {
 // product info will also consist a a data and place where to have the function
 // add pay pal, add master card, and visa
 
-export default function Product() {
+const Product=()=> {
+const productList = useContext(OurContext)
+const product = productList[3]
+console.log(productList)
+
+
+
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [attendance, setattendance] = useState(product.attendants[0])
   const [currentImage, setCurrentImage] = useState(0)
@@ -308,3 +317,4 @@ export default function Product() {
     </div>
   )
 }
+export default Product

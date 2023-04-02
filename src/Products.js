@@ -21,7 +21,7 @@ import { Products } from './components/pages/Products'
       href: '#',
       css: '',
       breadcrumbs: [
-        {  name: 'Categories', href: '#' }
+        {  name: 'Decorations', href: '#' }
       ],
       images: [
         {
@@ -73,7 +73,7 @@ import { Products } from './components/pages/Products'
         href: '#',
         css: '',
         breadcrumbs: [
-          {  name: 'Categories', href: '#' }
+          {  name: 'Decorations', href: '#' }
         ],
         images: [
           {
@@ -125,7 +125,7 @@ import { Products } from './components/pages/Products'
         href: '#',
         css: '',
         breadcrumbs: [
-          {  name: 'Categories', href: '#' }
+          {  name: 'Decorations', href: '#' }
         ],
         images: [
           {
@@ -177,7 +177,7 @@ import { Products } from './components/pages/Products'
         href: '#',
         css: '',
         breadcrumbs: [
-          {  name: 'Categories', href: '#' }
+          {  name: 'Decorations', href: '#' }
         ],
         images: [
           {
@@ -229,7 +229,7 @@ import { Products } from './components/pages/Products'
           href: '#',
           css: '',
           breadcrumbs: [
-            {  name: 'Categories', href: '#' }
+            {  name: 'Decorations', href: '#' }
           ],
           images: [
             {
@@ -281,7 +281,7 @@ import { Products } from './components/pages/Products'
           href: '#',
           css: '',
           breadcrumbs: [
-            {  name: 'Categories', href: '#' }
+            {  name: 'Decorations', href: '#' }
           ],
           images: [
             {

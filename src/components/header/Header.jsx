@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useContext } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import {
   ArrowPathIcon,
@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
+import { OurContext } from "../../Root"
 
 
 
@@ -30,16 +31,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+ const Header = ()=> {
 
-export default function Header() {
+  const productList = useContext(OurContext)
+
 
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-
-
-  return (
-    <header className="bg-white">
+  return  <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to={`/`} className="-m-1.5 p-1.5">
@@ -61,7 +61,7 @@ export default function Header() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Decor for
+              Decorations
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -76,20 +76,20 @@ export default function Header() {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {productList.map((product, index) => (
                     <div
-                      key={item.name}
+                      key={index}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                        <img src={product.icon} alt={product.name} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-900">
-                          {item.name}
+                        <a href={product.href} className="block font-semibold text-gray-900">
+                          {product.name}
                           <span className="absolute inset-0" />
                         </a>
-                        <p className="mt-1 text-gray-600">{item.description}</p>
+                        <p className="mt-1 text-overflow w-72 text-gray-600">{product.description}</p>
                       </div>
                     </div>
                   ))}
@@ -131,7 +131,7 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Big Days By Asha</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -154,14 +154,14 @@ export default function Header() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
-                        Product
+                        Decorations
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
+                        {[...productList, ...callsToAction].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="a"
@@ -207,5 +207,7 @@ export default function Header() {
         </Dialog.Panel>
       </Dialog>
     </header>
-  )
-}
+} 
+
+
+export default Header
