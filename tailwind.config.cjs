@@ -13,6 +13,9 @@ module.exports = {
         'poppins': 'poppins',
       },
     extend: {
+      grayscale: {
+        30: '30%',
+      },
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
       },

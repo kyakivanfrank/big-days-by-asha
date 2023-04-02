@@ -8,12 +8,11 @@ import categoryImg12 from '../../assets/panaroma12.png'
 
 
 const product = {
-  name: 'Simple Baby Shower',
+  name: 'Baby Shower',
   price: '500 AED',
   href: '#',
   breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' }
+    {  name: 'Categories', href: '#' }
   ],
   images: [
     {
@@ -65,7 +64,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Specifics() {
+// product info will also consist a a data and place where to have the function
+// add pay pal, add master card, and visa
+
+export default function Product() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [attendance, setattendance] = useState(product.attendants[0])
   const [currentImage, setCurrentImage] = useState(0)
@@ -82,8 +84,8 @@ export default function Specifics() {
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {product.breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
+            {product.breadcrumbs.map((breadcrumb, index) => (
+              <li key={index}>
                 <div className="flex items-center">
                   <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
                     {breadcrumb.name}
@@ -145,10 +147,7 @@ export default function Specifics() {
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={classNames(
-                        reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
-                        'h-5 w-5 flex-shrink-0'
-                      )}
+                      className={classNames(reviews.average > rating ? 'text-gray-900' : 'text-gray-200','h-5 w-5 flex-shrink-0')}
                       aria-hidden="true"
                     />
                   ))}
