@@ -14,7 +14,7 @@ module.exports = {
       },
     extend: {
       grayscale: {
-        30: '30%',
+        80: '80%',
       },
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
