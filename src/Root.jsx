@@ -8,6 +8,8 @@ import { Holidays } from './components/pages/Holidays'
 import Error from './components/Error'
 
 import products from "./Products"
+import { Addons } from './components/pages/Addons'
+import ShoppingCart from './components/pages/ShoppingCart'
 export const OurContext = createContext()
 
 const Root = () => {
@@ -24,11 +26,18 @@ const router =  createBrowserRouter([
     children:[
       {
         path: '/',
-        element: <><Holidays/><Categories/></>
+        element: <><Holidays/><Categories/><Addons/> </>
       },
       {
         path: '/:product',
-        element: <Product/>
+        element: <Product/>,
+        children:[
+          {
+            path: '/:product/cart',
+            element: <ShoppingCart/>
+          }
+
+        ]
       }
     ]
   }

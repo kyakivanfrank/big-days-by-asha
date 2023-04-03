@@ -11,7 +11,6 @@ import hamper from './assets/categories/hamper.svg'
 import categoryImg from './assets/panaroma.jpg'
 import categoryImg1 from './assets/panaroma1.jpg'
 import categoryImg12 from './assets/panaroma12.png'
-import { Products } from './components/pages/Products'
 
  const products = [
     {

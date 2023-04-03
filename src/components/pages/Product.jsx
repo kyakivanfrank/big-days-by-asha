@@ -73,8 +73,6 @@ function classNames(...classes) {
 const Product=()=> {
 const productList = useContext(OurContext)
 const product = productList[3]
-console.log(productList)
-
 
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
