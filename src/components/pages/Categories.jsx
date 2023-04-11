@@ -15,7 +15,7 @@ export const Categories = () => {
           <div className="mt-6  lg:flex mx-auto grid grid-cols-3 lg:gap-3 gap-2 justify-center">
             {productList.map((product, index) => <div key={index} className={`p-0 lg:p-5 hover:-translate-y-1 grayscale-30 opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-all shadow-lg bg-white rounded-lg ${product.css}`}>
               <Link to={`${product.name}`}>
-                <div className="mx-auto  group-hover:opacity-75 ">
+                <div className="mx-auto group-hover:opacity-75 ">
                   <img src={product.icon} alt={product.name} className="h-full w-full p-4 object-cover object-center" />
                 </div>
                 <h3 className="text-base text-center font-semibold pb-2 lg:pb-0 text-gray-900">

@@ -43,7 +43,7 @@ function classNames(...classes) {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to={`/`} className="-m-1.5 p-1.5">
-            {/* <span className="sr-only">Your Company</span> */}
+            {/* <span className="sr-only">YourOur company</span> */}
             {/* <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" /> */}
            <h1 className='text-2xl font-bold' >BIG DAY BY ASHA</h1>
           </Link>
@@ -110,14 +110,14 @@ function classNames(...classes) {
             </Transition>
           </Popover>
 
-          <Link to="/products/d" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/products" className="text-sm font-semibold leading-6 text-gray-900">
             Features
           </Link>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Marketplace
-          </a>
+          </a> */}
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+           Our company
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -126,6 +126,15 @@ function classNames(...classes) {
           </a>
         </div>
       </nav>
+
+
+
+
+
+
+{/* small screens button starts here */}
+
+
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -191,7 +200,7 @@ function classNames(...classes) {
                   href="#"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                 Our company
                 </a>
               </div>
               <div className="py-6">

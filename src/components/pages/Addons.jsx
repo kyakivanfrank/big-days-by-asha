@@ -154,7 +154,6 @@ const [showless, setshowless] = useState(shuffledAddons)
 
 useLayoutEffect(() => {
   const dimension = addOnsRef.current.getBoundingClientRect().width
-  console.log(dimension)
   setshowless(dimension >= 976 ? AddOnData.slice(0,4) : AddOnData.slice(0,6))
 }, [AddOnData])
 

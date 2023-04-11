@@ -64,3 +64,11 @@ mix-blend-mode: luminosity
 .h-addon{
     height: 40rem;
 }
+
+.imgHue{
+    filter: hue-rotate(130deg);
+}
+
+#hide-view{
+    display: none;
+}
