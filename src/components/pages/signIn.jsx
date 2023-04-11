@@ -86,8 +86,8 @@ const SignIn =()=> {
               </button>
             </div>
           </form>
-          <p className="mt-2 text-center text-sm text-gray-600">or{' '}
-            <Link to={'/signup'} className="font-medium text-indigo-600 hover:text-indigo-500">Sign up for a new account</Link>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            <Link to={'/signup'} className="font-medium text-indigo-600 hover:text-indigo-500">I don't have any account</Link>
             </p>
         </div>
       </div></>

@@ -116,7 +116,7 @@ const signup = e => {
 
         
       </form>
-      <p className="mt-2 text-center text-sm text-gray-600">or{' '}
+      <p className="mt-2 text-center text-sm text-gray-600">
         <Link to={'/signin'} className="font-medium text-indigo-600 hover:text-indigo-500">I already have an account</Link>
         </p>
     </div>
