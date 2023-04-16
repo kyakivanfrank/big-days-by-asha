@@ -20,7 +20,7 @@ import categoryImg12 from './assets/panaroma12.png'
       href: '#',
       css: '',
       breadcrumbs: [
-        {  name: 'Decorations', href: '#' }
+        {  name: 'Categories', href: '#' }
       ],
       images: [
         {

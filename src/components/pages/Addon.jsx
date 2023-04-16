@@ -17,7 +17,7 @@ function classNames(...classes) {
 // product info will also consist a a data and place where to have the function
 // add pay pal, add master card, and visa
 
-const Product=()=> {
+const Addon=()=> {
 const productList = useContext(OurContext)
 const product = productList[3]
 
@@ -112,16 +112,6 @@ const product = productList[3]
                 </a>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
 
 
             <form className="mt-10">
@@ -274,4 +264,4 @@ const product = productList[3]
     </div>
   )
 }
-export default Product
+export default Addon

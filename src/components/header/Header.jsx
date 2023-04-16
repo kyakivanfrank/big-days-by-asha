@@ -94,7 +94,7 @@ function classNames(...classes) {
                     </div>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
                     <a
                       key={item.name}
@@ -105,7 +105,7 @@ function classNames(...classes) {
                       {item.name}
                     </a>
                   ))}
-                </div>
+                </div> */}
               </Popover.Panel>
             </Transition>
           </Popover>
@@ -116,9 +116,9 @@ function classNames(...classes) {
           {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Marketplace
           </a> */}
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to={`/about`} className="text-sm font-semibold leading-6 text-gray-900">
            Our company
-          </a>
+          </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link to={'/signin'} className="text-sm font-semibold leading-6 text-gray-900">
@@ -169,13 +169,17 @@ function classNames(...classes) {
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
-                      <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...productList, ...callsToAction].map((item) => (
+                      <Disclosure.Panel className="mt-2 space-y-2 bg-gray-50">
+                        {[...productList
+                        // , ...callsToAction
+                      ].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900
+                             hover:bg-gray-10
+                             "
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -190,18 +194,12 @@ function classNames(...classes) {
                 >
                   Features
                 </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
+                
+                <Link to={`/about`}
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                  Our company
-                </a>
+                </Link>
               </div>
               <div className="py-6">
                 <Link to={'/signin'}
