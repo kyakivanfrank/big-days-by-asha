@@ -56,9 +56,14 @@ import categoryImg12 from './assets/panaroma12.png'
       ],
       description:
         'In this package, It requires a simple decoration with a small number of people maximum 10, which comes with 50 ballons (ordinary ballons) with a custom name in an indoor venue, with a simple back and 2 flowers. this setup is suitable for aeonmical baby shower',
-      highlights: ['Upto 50 ordinary balloons', 'Customa baby name', 'circular layout with simple backdrop','2 rose flowers',
+      highlights: [
+        'Upto 50 ordinary balloons',
+        'Customa baby name',
+        'circular layout with simple backdrop',
+        '2 rose flowers',
       ],
-      details: 'this is the users description, The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+      details:
+        'this is the users description, The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
       },
     {
         name: 'Baby Shower',
@@ -319,7 +324,7 @@ import categoryImg12 from './assets/panaroma12.png'
           ],
           details:
             'this is the users description, The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-        }
+        },
   ]
 
   export default products;

@@ -30,8 +30,8 @@ const callouts = [
   export default function Category() {
     const categoryparams = useParams().category
     const data = useContext(OurContext)
-    const category = data.filter( category => { return category.name.includes(categoryparams) })
-    const { name, description , href, breadcrumbs} = category[0]
+    const category = data.filter( category => { return category.name.includes(categoryparams)})
+    const { name, description, href, breadcrumbs} = category[0]
 
 
     return (
@@ -67,8 +67,6 @@ const callouts = [
           </ol>
         </nav>
 
-
-          
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {callouts.map((callout) => (
                 <div key={callout.name} className="group  relative">

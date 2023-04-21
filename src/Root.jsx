@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider,  } from 'react-router-dom'
 
 import App from './App'
@@ -18,20 +18,67 @@ import Reviews from './components/Reviews'
 import Addon from './components/pages/Addon'
 export const OurContext = createContext()
 
+import app from './firebase'
+import { getFirestore} from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore"; 
+
+
+
 const Root = () => {
-    const [productList, setProducts] = useState(products)
-    return <OurContext.Provider value={productList}><RouterProvider router={router} /></OurContext.Provider>
+//   const db  = getFirestore(app)
+//   const [categories, setCategories] = useState([])
+//   const [addons, setAddons] = useState([])
+//   const [data, setData] = useState([])
+
+//   const fetchAddons = async () => {
+//     const collectionRef = collection(db, 'Addons');
+//     const querySnapshot = await getDocs(collectionRef);
+//     const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//     setAddons(AddonDocs);
+//     setData({...data, AddonDocs})
+//   };
+
+//   const fetchCategories = async () => {
+//     const collectionRef = collection(db, 'Categories');
+//     const querySnapshot = await getDocs(collectionRef);
+//     const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//     setCategories(CategoryDocs);
+//     setData({...data, categories})
+//   };
+
+//   useEffect(() => {
+//     fetchCategories();
+// }, []);
+
+
+const db = getFirestore(app);
+const [categories, setCategories] = useState([]);
+const [addons, setAddons] = useState([]);
+
+const fetchAddons = async () => {
+  const collectionRef = collection(db, 'Addons');
+  const querySnapshot = await getDocs(collectionRef);
+  const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  setAddons(AddonDocs);
+};
+
+const fetchCategories = async () => {
+  const collectionRef = collection(db, 'Categories');
+  const querySnapshot = await getDocs(collectionRef);
+  const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  setCategories(CategoryDocs);
+};
+
+useEffect(() => {
+  Promise.all([fetchCategories(), fetchAddons()]);
+}, []);
+
+
+
+
+    return <OurContext.Provider value={categories}><RouterProvider router={router} /></OurContext.Provider>
 }
 
-// so far weve realized 2 collections of data
-
-// Data hierarchy for categories => categories => birthdays => boss"s birthday packages => edit more => checkout => make payments =>receive services on a scheduled data => give areview
-
-// Data hierarchy for Addons => Addon Pool, filter by amount, filter by prices => choose Addon => Add along checkout => purchase > and wait to recieve in location
-
-const dataLoader = ()=> {
-  return ['boy', 'girl', 'brother', 'sister']
-}
 
 const router =  createBrowserRouter([
   {
@@ -46,7 +93,7 @@ const router =  createBrowserRouter([
       },
       {
         path: '/:category',
-        element:  <><Category/> {/* <Reviews/>  */} <Addons/></>,
+        element:  <><Category/><Addons/></>
       },
       {
         path: '/about',
@@ -62,19 +109,19 @@ const router =  createBrowserRouter([
         path: '/signup',
         element: <SignUp/>
       },
-      {
-        path: '/shop',
-        element: <ShoppingCart/>
-      },
+      // {
+      //   path: '/shop',
+      //   element: <ShoppingCart/>
+      // },
       {
         path: '/product',
         element: <Product />,
-        children:[
-          {
-            path: '/product/cart',
-            element: <ShoppingCart/>
-          }
-        ]
+        // children:[
+        //   {
+        //     path: '/product/cart',
+        //     element: <ShoppingCart/>
+        //   }
+        // ]
       }
     ]
   }
