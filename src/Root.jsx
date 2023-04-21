@@ -68,6 +68,13 @@ const fetchAddons = async () => {
   setData(prevState => ({ ...prevState, addons: AddonDocs }));
 };
 
+const fetchPromotionalOffers = async () => {
+  const collectionRef = collection(db, 'PromotionalOffers');
+  const querySnapshot = await getDocs(collectionRef);
+  const PromotionalOfferDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  setData(prevState => ({ ...prevState, promotionalOffers: PromotionalOfferDocs }));
+};
+
 const fetchCategories = async () => {
   const collectionRef = collection(db, 'Categories');
   const querySnapshot = await getDocs(collectionRef);
@@ -76,15 +83,12 @@ const fetchCategories = async () => {
 };
 
 useEffect(() => {
-  Promise.all([fetchCategories(), fetchAddons()]);
+  Promise.all([fetchCategories(), fetchAddons(), fetchPromotionalOffers()]);
 }, []);
-
-
 
 
     return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
 }
-
 
 const router =  createBrowserRouter([
   {

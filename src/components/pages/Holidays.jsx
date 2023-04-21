@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import more from '../../assets/more_arrow.svg'
 import banner from '../../assets/banner.jpg'
+import { OurContext } from '../../Root'
 
 const callouts = [
   {
@@ -13,7 +14,12 @@ const callouts = [
 
 ]
 
-export const Holidays = () => {
+export const Holidays = () =>  {
+const { promotionalOffers } = useContext(OurContext)
+
+console.table(promotionalOffers)
+
+
   return (
 <div className="bg-gray-100 ">
       <div className="mx-auto md:max-w-7xl lg:px-8 md:px-20 lg:pt-4">
