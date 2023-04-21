@@ -1,162 +1,167 @@
-import React, {useState,useRef, useLayoutEffect} from 'react'
+import React, {useState,useRef, useLayoutEffect, useContext} from 'react'
 import more from '../../assets/more_arrow.svg'
 import categoryImg from '../../assets/panaroma.jpg'
+import { OurContext } from '../../Root'
 
 
-const AddOns = [
-  {
-    itemName: 'Flower bouquet',
-    price: 456,
-    description: 'Work from home accessories',
-    imageSrc : categoryImg,
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: '#',
-  },
-  {
-    itemName: 'balloons',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'sweets and chocolate',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },{
-    itemName: 'Flower bouquet',
-    price: 456,
-    description: 'Work from home accessories',
-    imageSrc : categoryImg,
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: '#',
-  },
-  {
-    itemName: 'balloons',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'sweets and chocolate',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },{
-    itemName: 'Flower bouquet',
-    price: 456,
-    description: 'Work from home accessories',
-    imageSrc : categoryImg,
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: '#',
-  },
-  {
-    itemName: 'balloons',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'sweets and chocolate',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },{
-    itemName: 'Flower bouquet',
-    price: 456,
-    description: 'Work from home accessories',
-    imageSrc : categoryImg,
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: '#',
-  },
-  {
-    itemName: 'balloons',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'sweets and chocolate',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },{
-    itemName: 'Flower bouquet',
-    price: 456,
-    description: 'Work from home accessories',
-    imageSrc : categoryImg,
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: '#',
-  },
-  {
-    itemName: 'balloons',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'sweets and chocolate',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
-  {
-    itemName: 'cakes',
-    price: 456,
-    description: 'Journals and note-taking',
-    imageSrc : categoryImg,
-    imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-    href: '#',
-  },
+// const AddOns = [
+//   {
+//     itemName: 'Flower bouquet',
+//     price: 456,
+//     description: 'Work from home accessories',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'balloons',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'sweets and chocolate',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },{
+//     itemName: 'Flower bouquet',
+//     price: 456,
+//     description: 'Work from home accessories',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'balloons',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'sweets and chocolate',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },{
+//     itemName: 'Flower bouquet',
+//     price: 456,
+//     description: 'Work from home accessories',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'balloons',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'sweets and chocolate',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },{
+//     itemName: 'Flower bouquet',
+//     price: 456,
+//     description: 'Work from home accessories',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'balloons',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'sweets and chocolate',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },{
+//     itemName: 'Flower bouquet',
+//     price: 456,
+//     description: 'Work from home accessories',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'balloons',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'sweets and chocolate',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
+//   {
+//     itemName: 'cakes',
+//     price: 456,
+//     description: 'Journals and note-taking',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+//     href: '#',
+//   },
 
 
-  {
-    itemName: 'Travel',
-    price: 456,
-    description: 'Daily commute essentials',
-    imageSrc : categoryImg,
-    imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
-    href: '#',
-  },
-]
+//   {
+//     itemName: 'Travel',
+//     price: 456,
+//     description: 'Daily commute essentials',
+//     imageSrc : categoryImg,
+//     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+//     href: '#',
+//   },
+// ]
 
-let shuffledAddons = AddOns
+
+
+export const Addons = () => {
+  const {addons} = useContext(OurContext)
+  let shuffledAddons = addons
     .map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
-
-export const Addons = () => {
 
   const addOnsRef =  useRef()
 
 const [AddOnData, setAddOnData] = useState(shuffledAddons)
 const [showless, setshowless] = useState(shuffledAddons)
 
+
+
+
 useLayoutEffect(() => {
   const dimension = addOnsRef.current.getBoundingClientRect().width
   setshowless(dimension >= 976 ? AddOnData.slice(0,4) : AddOnData.slice(0,6))
 }, [AddOnData])
-
 
 
   return (

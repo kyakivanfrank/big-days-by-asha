@@ -25,48 +25,54 @@ import { collection, doc, getDocs } from "firebase/firestore";
 
 
 const Root = () => {
-//   const db  = getFirestore(app)
-//   const [categories, setCategories] = useState([])
-//   const [addons, setAddons] = useState([])
-//   const [data, setData] = useState([])
 
-//   const fetchAddons = async () => {
-//     const collectionRef = collection(db, 'Addons');
-//     const querySnapshot = await getDocs(collectionRef);
-//     const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-//     setAddons(AddonDocs);
-//     setData({...data, AddonDocs})
-//   };
+// const db = getFirestore(app);
+// const [categories, setCategories] = useState([]);
+// const [addons, setAddons] = useState([]);
+// const [data, setData] = useState({})
 
-//   const fetchCategories = async () => {
-//     const collectionRef = collection(db, 'Categories');
-//     const querySnapshot = await getDocs(collectionRef);
-//     const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-//     setCategories(CategoryDocs);
-//     setData({...data, categories})
-//   };
 
-//   useEffect(() => {
-//     fetchCategories();
+// const fetchAddons = async () => {
+//   const collectionRef = collection(db, 'Addons');
+//   const querySnapshot = await getDocs(collectionRef);
+//   const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//   return AddonDocs
+//   // setAddons(AddonDocs);
+// };
+
+// const fetchCategories = async () => {
+//   const collectionRef = collection(db, 'Categories');
+//   const querySnapshot = await getDocs(collectionRef);
+//   const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//   return CategoryDocs
+//   // setCategories(CategoryDocs);
+// };
+
+// useEffect(() => {
+//   setData({categories: fetchCategories, addons: fetchAddons})
+//   const promise = Promise.all([fetchCategories(), fetchAddons()]);
+
 // }, []);
 
 
+// console.log(data)
+
+
 const db = getFirestore(app);
-const [categories, setCategories] = useState([]);
-const [addons, setAddons] = useState([]);
+const [data, setData] = useState({ categories: [], addons: [] });
 
 const fetchAddons = async () => {
   const collectionRef = collection(db, 'Addons');
   const querySnapshot = await getDocs(collectionRef);
   const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  setAddons(AddonDocs);
+  setData(prevState => ({ ...prevState, addons: AddonDocs }));
 };
 
 const fetchCategories = async () => {
   const collectionRef = collection(db, 'Categories');
   const querySnapshot = await getDocs(collectionRef);
   const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  setCategories(CategoryDocs);
+  setData(prevState => ({ ...prevState, categories: CategoryDocs }));
 };
 
 useEffect(() => {
@@ -76,7 +82,7 @@ useEffect(() => {
 
 
 
-    return <OurContext.Provider value={categories}><RouterProvider router={router} /></OurContext.Provider>
+    return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
 }
 
 
