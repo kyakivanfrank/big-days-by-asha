@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider,  } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Routes  } from 'react-router-dom'
 
 import App from './App'
 import Product from './components/pages/Product'
@@ -26,116 +26,57 @@ import { collection, doc, getDocs } from "firebase/firestore";
 
 const Root = () => {
 
-// const db = getFirestore(app);
-// const [categories, setCategories] = useState([]);
-// const [addons, setAddons] = useState([]);
-// const [data, setData] = useState({})
-
-
-// const fetchAddons = async () => {
-//   const collectionRef = collection(db, 'Addons');
-//   const querySnapshot = await getDocs(collectionRef);
-//   const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-//   return AddonDocs
-//   // setAddons(AddonDocs);
-// };
-
-// const fetchCategories = async () => {
-//   const collectionRef = collection(db, 'Categories');
-//   const querySnapshot = await getDocs(collectionRef);
-//   const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-//   return CategoryDocs
-//   // setCategories(CategoryDocs);
-// };
-
-// useEffect(() => {
-//   setData({categories: fetchCategories, addons: fetchAddons})
-//   const promise = Promise.all([fetchCategories(), fetchAddons()]);
-
-// }, []);
-
-
-// console.log(data)
-
-
 const db = getFirestore(app);
-const [data, setData] = useState({ categories: [], addons: [] });
 
-const fetchAddons = async () => {
-  const collectionRef = collection(db, 'Addons');
-  const querySnapshot = await getDocs(collectionRef);
-  const AddonDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  setData(prevState => ({ ...prevState, addons: AddonDocs }));
-};
 
-const fetchPromotionalOffers = async () => {
-  const collectionRef = collection(db, 'PromotionalOffers');
-  const querySnapshot = await getDocs(collectionRef);
-  const PromotionalOfferDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  setData(prevState => ({ ...prevState, promotionalOffers: PromotionalOfferDocs }));
-};
+const [loading, setLoading] = useState(true);
+const [data, setData] = useState({ categories: [], addons: [], promotionalOffers:[]  });
 
-const fetchCategories = async () => {
-  const collectionRef = collection(db, 'Categories');
+const fetchCollectionData = async (collectionName) => {
+  const collectionRef = collection(db, collectionName);
   const querySnapshot = await getDocs(collectionRef);
-  const CategoryDocs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  setData(prevState => ({ ...prevState, categories: CategoryDocs }));
+  const docs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return docs;
 };
 
 useEffect(() => {
-  Promise.all([fetchCategories(), fetchAddons(), fetchPromotionalOffers()]);
+  Promise.all([
+    fetchCollectionData('Categories'),
+    fetchCollectionData('Addons'),
+    fetchCollectionData('PromotionalOffers')
+  ])
+    .then(([categories, addons, promotionalOffers]) => {
+      setData({ categories, addons, promotionalOffers });
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.log('Error fetching data: ', error);
+    });
 }, []);
 
+console.log(data)
+
+if (loading) {
+  return <div>Loading...</div>;
+}
 
     return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
 }
 
-const router =  createBrowserRouter([
-  {
-    path : "/",
-    element: <App/>,
 
-    errorElement: <Error/>,
-    children:[
-      {
-        path: '/',
-        element: <><Holidays/><Categories/><Addons/> </>
-      },
-      {
-        path: '/:category',
-        element:  <><Category/><Addons/></>
-      },
-      {
-        path: '/about',
-        element: <Ourcompany/>
-      }, {
-        path: '/addon',
-        element: <Addon/>
-      },
-      {
-        path: '/signin',
-        element: <SignIn/>
-      },{
-        path: '/signup',
-        element: <SignUp/>
-      },
-      // {
-      //   path: '/shop',
-      //   element: <ShoppingCart/>
-      // },
-      {
-        path: '/product',
-        element: <Product />,
-        // children:[
-        //   {
-        //     path: '/product/cart',
-        //     element: <ShoppingCart/>
-        //   }
-        // ]
-      }
-    ]
-  }
-])
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<App/>} errorElement={<Error />}>
+      <Route path="/" element={<><Holidays/><Categories/><Addons/> </>} />
+      <Route path='/:category' element={<><Category  /><Addons/></>}/>
+      <Route path="about" element={<Ourcompany />} />
+      <Route path='signin' element={<SignIn/>}/>
+      <Route path='checkout' element={<ShoppingCart/>}/>
+      <Route path='signup' element={<SignUp/>}/>
+    </Route>
+  )
+);
+
 
 export default Root
 

@@ -144,6 +144,7 @@ import { OurContext } from '../../Root'
 
 
 export const Addons = () => {
+  
   const {addons} = useContext(OurContext)
   let shuffledAddons = addons
     .map(value => ({ value, sort: Math.random() }))

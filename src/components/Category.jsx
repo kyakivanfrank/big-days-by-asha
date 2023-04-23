@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext} from "react"
 import { Link, useParams } from "react-router-dom"
 import { OurContext } from "../Root"
 
@@ -28,10 +28,16 @@ const callouts = [
   ]
   
   export default function Category() {
-    const categoryparams = useParams().category
+
     const data = useContext(OurContext)
-    const category = data.filter( category => { return category.name.includes(categoryparams)})
-    const { name, description, href, breadcrumbs} = category[0]
+
+
+    const{ category: categoryparams } = useParams()
+
+    const {description, icon, id, name} = data.categories.find(item => item.id === categoryparams)
+
+    console.log(`categoryparams${categoryparams}`)
+    console.log(`category id${id}`)
 
 
     return (
@@ -47,7 +53,7 @@ const callouts = [
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2  lg:max-w-7xl">
            <li >
                 <div className="flex items-center">
-                  <Link to={`#`} className="mr-2 text-sm font-medium text-gray-900">
+                  <Link to={`/`} className="mr-2 text-sm font-medium text-gray-900">
                     Categories
                   </Link>
                   <svg
@@ -63,7 +69,7 @@ const callouts = [
                 </div>
               </li>
 
-            <li className="text-sm"><a href={href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">{name}</a></li>
+            <li className="text-sm"><Link to={id} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">{name}</Link></li>
           </ol>
         </nav>
 
