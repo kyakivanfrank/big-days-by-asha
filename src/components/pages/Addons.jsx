@@ -1,4 +1,5 @@
 import React, {useState,useRef, useLayoutEffect, useContext} from 'react'
+import { Link } from 'react-router-dom'
 import more from '../../assets/more_arrow.svg'
 import categoryImg from '../../assets/panaroma.jpg'
 import { OurContext } from '../../Root'
@@ -191,10 +192,10 @@ useLayoutEffect(() => {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-overflow w-32 lg:w-full text-gray-700">
-                    <a href={product.href} >
+                    <Link href={product.href} >
                       {/* <span aria-hidden="true" className="absolute inset-0" /> */}
                       {product.itemName}
-                    </a>
+                    </Link>
                   </h3>
                   {/* <p className="mt-1 text-sm text-gray-500">{product.description}</p> */}
                 </div>

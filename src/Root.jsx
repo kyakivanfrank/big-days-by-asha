@@ -2,13 +2,25 @@ import { createContext, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Routes } from 'react-router-dom'
 
 import App from './App'
-import Product from './components/pages/Product'
+import ProductPage from './components/pages/ProductPage'
+import Dashboard from './dashboard/index.jsx'
 import { Categories } from './components/pages/Categories'
 import PromotionalSlides from './components/pages/PromotionalSlides'
 import Error from './components/Error'
 import Ourcompany from "./components/pages/Ourcompany"
 
-import products from "./Products"
+// here are the admin routes
+
+// import Products from "./dashboard/components/Products";
+// import Dashboardcategories from "./dashboard/components/Dashboardcategories";
+// import Promotions from "./dashboard/components/Promotions";
+// import Subscribers from "./dashboard/components/Subscribers";
+// import LoginLogs from "./dashboard/components/Loginlogs";
+// import Orders from "./dashboard/components/Orders";
+
+
+
+
 import { Addons } from './components/pages/Addons'
 import ShoppingCart from './components/pages/ShoppingCart'
 import SignIn from './components/pages/signIn'
@@ -106,11 +118,22 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<Error />}>
       <Route path="/" element={<><PromotionalSlides /><Categories /><Addons /> </>} />
-      <Route path='/:category' element={<><Category /><Addons /></>} />
+      <Route path=':category' element={<><Category /><Addons /></>} >
+        <Route path=':product' element={<ProductPage />} />
+      </Route>
       <Route path="about" element={<Ourcompany />} />
       <Route path='signin' element={<SignIn />} />
       <Route path='checkout' element={<ShoppingCart />} />
       <Route path='signup' element={<SignUp />} />
+      <Route path='product' element={<ProductPage />} />
+      {/* <Route path='admin' element={<Dashboard />} >
+        <Route path="/products" element={<Products products={products} removeProduct={removeProduct} />} />
+        <Route path="/categories" element={<Dashboardcategories categories={categories} addCategory={addCategory} />} />
+        <Route path="/promotions" element={<Promotions promotions={promotions} addPromotion={addPromotion} removePromotion={removePromotion} />} />
+        <Route path="/subscribers" element={<Subscribers subscribers={subscribers} addSubscriber={addSubscriber} />} />
+        <Route path="/login-logs" element={<LoginLogs loginLogs={loginLogs} addLoginLog={addLoginLog} />} />
+        <Route path="/orders" element={<Orders orders={orders} addOrder={addOrder} />} />
+      </Route> */}
     </Route>
   )
 );
