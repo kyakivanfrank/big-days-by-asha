@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Routes  } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Routes } from 'react-router-dom'
 
 import App from './App'
 import Product from './components/pages/Product'
 import { Categories } from './components/pages/Categories'
-import { Holidays } from './components/pages/Holidays'
+import PromotionalSlides from './components/pages/PromotionalSlides'
 import Error from './components/Error'
 import Ourcompany from "./components/pages/Ourcompany"
 
@@ -19,60 +19,98 @@ import Addon from './components/pages/Addon'
 export const OurContext = createContext()
 
 import app from './firebase'
-import { getFirestore} from "firebase/firestore";
-import { collection, doc, getDocs } from "firebase/firestore"; 
+import { getFirestore } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
 
 
 
 const Root = () => {
 
-const db = getFirestore(app);
+
+  const db = getFirestore(app);
+
+  // const offersCollectionRef = collection(db, 'PromotionalOffers');
+
+  // const offersData = [
+  //   {
+  //     id: 'ChristmasOffer',
+  //     offerTitle: 'Christmas Offer',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     discountPrice: 35.0,
+  //     keywords: ['Christmas', 'Holiday', 'Sale'],
+  //     backgroundImage: 'https://example.com/christmas-background.jpg',
+  //     simpleImage: 'https://example.com/christmas-simple.jpg'
+  //   },
+  //   {
+  //     id: 'Valentines',
+  //     offerTitle: 'Valentine\'s Day Offer',
+  //     description: 'Surprise your loved one with a gift and get 30% off!',
+  //     price: 75.0,
+  //     discountPrice: 52.5,
+  //     keywords: ['Valentine\'s Day', 'Love', 'Sale'],
+  //     backgroundImage: 'https://example.com/valentines-background.jpg',
+  //     simpleImage: 'https://example.com/valentines-simple.jpg'
+  //   },
+  //   {
+  //     id: 'happyBirthday',
+  //     offerTitle: 'Happy Birthday Offer',
+  //     description: 'Celebrate your birthday in style and get 30% off!',
+  //     price: 100.0,
+  //     discountPrice: 70.0,
+  //     keywords: ['Birthday', 'Party', 'Sale'],
+  //     backgroundImage: 'https://example.com/birthday-background.jpg',
+  //     simpleImage: 'https://example.com/birthday-simple.jpg'
+  //   }
+  // ];
+
+  // offersData.forEach(async (offer) => {
+  //   await setDoc(doc(offersCollectionRef, offer.id), offer);
+  // });
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({ categories: [], addons: [], promotionalOffers: [] });
+
+  const fetchCollectionData = async (collectionName) => {
+    const collectionRef = collection(db, collectionName);
+    const querySnapshot = await getDocs(collectionRef);
+    const docs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    return docs;
+  };
+
+  useEffect(() => {
+    Promise.all([
+      fetchCollectionData('Categories'),
+      fetchCollectionData('Addons'),
+      fetchCollectionData('PromotionalOffers')
+    ])
+      .then(([categories, addons, promotionalOffers]) => {
+        setData({ categories, addons, promotionalOffers });
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error fetching data: ', error);
+      });
+  }, []);
 
 
-const [loading, setLoading] = useState(true);
-const [data, setData] = useState({ categories: [], addons: [], promotionalOffers:[]  });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-const fetchCollectionData = async (collectionName) => {
-  const collectionRef = collection(db, collectionName);
-  const querySnapshot = await getDocs(collectionRef);
-  const docs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  return docs;
-};
-
-useEffect(() => {
-  Promise.all([
-    fetchCollectionData('Categories'),
-    fetchCollectionData('Addons'),
-    fetchCollectionData('PromotionalOffers')
-  ])
-    .then(([categories, addons, promotionalOffers]) => {
-      setData({ categories, addons, promotionalOffers });
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.log('Error fetching data: ', error);
-    });
-}, []);
-
-console.log(data)
-
-if (loading) {
-  return <div>Loading...</div>;
-}
-
-    return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
+  return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
 }
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<App/>} errorElement={<Error />}>
-      <Route path="/" element={<><Holidays/><Categories/><Addons/> </>} />
-      <Route path='/:category' element={<><Category  /><Addons/></>}/>
+    <Route element={<App />} errorElement={<Error />}>
+      <Route path="/" element={<><PromotionalSlides /><Categories /><Addons /> </>} />
+      <Route path='/:category' element={<><Category /><Addons /></>} />
       <Route path="about" element={<Ourcompany />} />
-      <Route path='signin' element={<SignIn/>}/>
-      <Route path='checkout' element={<ShoppingCart/>}/>
-      <Route path='signup' element={<SignUp/>}/>
+      <Route path='signin' element={<SignIn />} />
+      <Route path='checkout' element={<ShoppingCart />} />
+      <Route path='signup' element={<SignUp />} />
     </Route>
   )
 );

@@ -17,9 +17,9 @@ function classNames(...classes) {
 // product info will also consist a a data and place where to have the function
 // add pay pal, add master card, and visa
 
-const Product=()=> {
-const productList = useContext(OurContext)
-const product = productList[3]
+const Product = () => {
+  const productList = useContext(OurContext)
+  const product = productList[3]
 
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
@@ -27,7 +27,7 @@ const product = productList[3]
   const [currentImage, setCurrentImage] = useState(0)
 
   const editArray = (arrayIndex) => {
-    product.images.forEach((element, index)=> element.css = "hidden")
+    product.images.forEach((element, index) => element.css = "hidden")
     product.images[arrayIndex].css = 'block h-96'
     setCurrentImage(arrayIndex)
   }
@@ -69,17 +69,17 @@ const product = productList[3]
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl gallery-height sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-2 lg:gap-2 lg:px-8">
 
-        {product.images.map((img, index) => <div key={index} id={index} className={`overflow-hidden lg:block movingIn lg:rounded-lg ${img.css}`} >
+          {product.images.map((img, index) => <div key={index} id={index} className={`overflow-hidden lg:block movingIn lg:rounded-lg ${img.css}`} >
             <img src={img.src} alt={img.alt} className="h-full w-full object-cover object-center" />
           </div>)}
 
         </div>
         <div className='lg:hidden sm:px-6 flex mt-0.5 mx-auto'>
-          {product.images.map((thumb, index)=> <div key={index} id={index} className="p-0.5 foc" onClick={()=> editArray(index)}> 
-          <img className='rounded-1xl h-full w-full object-cover object-center' src={thumb.src} alt="clickable" />
-          </div> 
-           )}
+          {product.images.map((thumb, index) => <div key={index} id={index} className="p-0.5 foc" onClick={() => editArray(index)}>
+            <img className='rounded-1xl h-full w-full object-cover object-center' src={thumb.src} alt="clickable" />
           </div>
+          )}
+        </div>
 
 
         {/* Product info */}
@@ -101,7 +101,7 @@ const product = productList[3]
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={classNames(reviews.average > rating ? 'text-gray-900' : 'text-gray-200','h-5 w-5 flex-shrink-0')}
+                      className={classNames(reviews.average > rating ? 'text-gray-900' : 'text-gray-200', 'h-5 w-5 flex-shrink-0')}
                       aria-hidden="true"
                     />
                   ))}
@@ -129,7 +129,7 @@ const product = productList[3]
               {/* Colors */}
               <div>
 
-               <h3 className="text-sm font-medium text-gray-900">Color</h3>
+                <h3 className="text-sm font-medium text-gray-900">Color</h3>
                 <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4">
                   <RadioGroup.Label className="sr-only"> Choose a color </RadioGroup.Label>
                   <div className="flex items-center space-x-3">

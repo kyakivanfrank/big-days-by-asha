@@ -1,9 +1,14 @@
-import React from "react"
+import React from 'react';
+import { MailIcon, PhoneIcon } from '@heroicons/react/20/solid';
+import { Link } from 'react-router-dom'
 
-export default function Example() {
-    return (
-      <div className="bg-white">
-        <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+import companyImage from '../../assets/banner.jpg';
+import founderImage from '../../assets/panaroma.jpg';
+
+const Ourcompany = () => {
+  return (
+ <div className="bg-white">
+        <div className="mx-auto max-w-7xl py-12 sm:px-6 sm:py-32 lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
               viewBox="0 0 1024 1024"
@@ -51,6 +56,20 @@ export default function Example() {
           </div>
         </div>
       </div>
-    )
-  }
-  
+
+  );
+};
+
+export default Ourcompany;  // Export the component as default
+
+
+
+
+
+
+
+
+
+
+
+ 
