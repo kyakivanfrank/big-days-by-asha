@@ -1,47 +1,600 @@
-import { createContext, useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Routes } from 'react-router-dom'
+  // Define categories data
+  // const categories = [
+  //   {
+  //     id: "Anniversaries",
+  //     name: "Anniversaries",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fanniversary.svg?alt=media&token=7c103cf3-8720-4c49-83ed-0567f0a5aef8",
+  //     description: "Celebrate your special day with our anniversary gifts.",
+  //     decorTypes: [
+  //       {
+  //         itemName: "Personalized Photo Frame",
+  //         description: "Treasure your memories with a personalized photo frame.",
+  //         price: 25.99,
+  //         giftKeywords: ["anniversary", "photo frame", "personalized"],
+  //         highlights: ["unique", "sentimental", "customizable"],
+  //         details: "Fits 4x6 inch photo, available in 3 colors.",
+  //         colors: [
+  //           { name: "Black", class: "bg-black", selectedClass: "ring-gray-400" },
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Walnut", class: "bg-walnut", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-photo-frame-black.jpg",
+  //             alt: "Personalized photo frame in black",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-white.jpg",
+  //             alt: "Personalized photo frame in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Date Night Jar",
+  //         description: "Bring some excitement to your date nights with our date night jar.",
+  //         price: 19.99,
+  //         giftKeywords: ["anniversary", "date night", "excitement"],
+  //         highlights: ["fun", "romantic", "customizable"],
+  //         details: "Comes with 50 date ideas, available in 2 colors.",
+  //         colors: [
+  //           { name: "Red", class: "bg-red-500", selectedClass: "ring-gray-400" },
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "date-night-jar-red.jpg",
+  //             alt: "Date night jar in red",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "date-night-jar-pink.jpg",
+  //             alt: "Date night jar in pink",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Personalized Champagne Glasses",
+  //         description: "Toast to your love with our personalized champagne glasses.",
+  //         price: 29.99,
+  //         giftKeywords: ["anniversary", "champagne", "personalized"],
+  //         highlights: ["elegant", "romantic", "customizable"],
+  //         details: "Engraved with your names and anniversary date, set of 2 glasses.",
+  //         colors: [
+  //           { name: "Clear", class: "bg-white", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           {
+  //             name: "20+", choice: false
+  //           },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-champagne-glasses.jpg",
+  //             alt: "Personalized champagne glasses",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       }
 
-import App from './App'
-import ProductPage from './components/pages/ProductPage'
-import Dashboard from './dashboard/index.jsx'
-import { Categories } from './components/pages/Categories'
-import PromotionalSlides from './components/pages/PromotionalSlides'
-import Error from './components/Error'
-import Ourcompany from "./components/pages/Ourcompany"
+  //     ],
+  //   },
+  //   {
+  //     id: "Birthdays",
+  //     name: "Birthdays",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fbirthday.svg?alt=media&token=d374cae2-9d75-40b4-badc-1c8d9ec1b736",
+  //     description: "Make their birthday unforgettable with our gifts.",
+  //     decorTypes: [
 
-// here are the admin routes
+  //       {
+  //         itemName: "Engraved Cheese Board",
+  //         description: "Add a touch of elegance to your cheese platter with our engraved cheese board.",
+  //         price: 39.99,
+  //         giftKeywords: ["anniversary", "cheese", "elegant"],
+  //         highlights: ["personalized", "functional", "customizable"],
+  //         details: "Engraved with your names and anniversary date, comes with 3 cheese knives.",
+  //         colors: [
+  //           { name: "Bamboo", class: "bg-bamboo", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "engraved-cheese-board.jpg",
+  //             alt: "Engraved cheese board",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "His and Hers Bathrobes",
+  //         description: "Relax in style with our his and hers bathrobes.",
+  //         price: 49.99,
+  //         giftKeywords: ["anniversary", "bathrobe", "couples"],
+  //         highlights: ["luxurious", "cozy", "matching"],
+  //         details: "Made with soft and comfortable material, available in 3 colors.",
+  //         colors: [
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
+  //           { name: "Navy", class: "bg-navy", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "his-and-hers-bathrobes-white.jpg",
+  //             alt: "His and hers bathrobes in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "his-and-hers-bathrobes-gray.jpg",
+  //             alt: "His and hers bathrobes in gray",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "his-and-hers-bathrobes-navy.jpg",
+  //             alt: "His and hers bathrobes in navy",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Love Letter Blanket",
+  //         description: "Wrap yourself in your love story with our love letter blanket.",
+  //         price: 59.99,
+  //         giftKeywords: ["anniversary", "blanket", "love story"],
+  //         highlights: ["sentimental", "cozy", "customizable"],
+  //         details: "Personalized with your love story, available in 3 sizes and 2 colors.",
+  //         colors: [
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //           { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
+  //           { name: "Navy Blue", class: "bg-blue-700", selectedClass: "ring-gray-900" }
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: true },
+  //           { name: "20+", choice: false }
+  //         ],
+  //         imageSet: [
+  //           { src: "love-letter-blanket-1.jpg", alt: "Love Letter Blanket - Pink", css: "w-full h-auto" },
+  //           { src: "love-letter-blanket-2.jpg", alt: "Love Letter Blanket - Gray", css: "w-full h-auto" },
+  //           { src: "love-letter-blanket-3.jpg", alt: "Love Letter Blanket - Navy Blue", css: "w-full h-auto" },
+  //           { src: "love-letter-blanket-4.jpg", alt: "Love Letter Blanket - Personalized Example", css: "w-full h-auto" }
+  //         ]
+  //       }
+  //     ],
+  //   },
+  //   {
+  //     id: "Baby showers",
+  //     name: "Baby showers",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fbabyshower.svg?alt=media&token=ee37598f-fae0-4d77-9a38-caffb5c4f934",
+  //     description: "Welcome the new arrival with our baby shower gifts.",
+  //     decorTypes: [
+  //       {
+  //         itemName: "Personalized Photo Frame",
+  //         description: "Treasure your memories with a personalized photo frame.",
+  //         price: 25.99,
+  //         giftKeywords: ["anniversary", "photo frame", "personalized"],
+  //         highlights: ["unique", "sentimental", "customizable"],
+  //         details: "Fits 4x6 inch photo, available in 3 colors.",
+  //         colors: [
+  //           { name: "Black", class: "bg-black", selectedClass: "ring-gray-400" },
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Walnut", class: "bg-walnut", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-photo-frame-black.jpg",
+  //             alt: "Personalized photo frame in black",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-white.jpg",
+  //             alt: "Personalized photo frame in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Date Night Jar",
+  //         description: "Bring some excitement to your date nights with our date night jar.",
+  //         price: 19.99,
+  //         giftKeywords: ["anniversary", "date night", "excitement"],
+  //         highlights: ["fun", "romantic", "customizable"],
+  //         details: "Comes with 50 date ideas, available in 2 colors.",
+  //         colors: [
+  //           { name: "Red", class: "bg-red-500", selectedClass: "ring-gray-400" },
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "date-night-jar-red.jpg",
+  //             alt: "Date night jar in red",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "date-night-jar-pink.jpg",
+  //             alt: "Date night jar in pink",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Personalized Champagne Glasses",
+  //         description: "Toast to your love with our personalized champagne glasses.",
+  //         price: 29.99,
+  //         giftKeywords: ["anniversary", "champagne", "personalized"],
+  //         highlights: ["elegant", "romantic", "customizable"],
+  //         details: "Engraved with your names and anniversary date, set of 2 glasses.",
+  //         colors: [
+  //           { name: "Clear", class: "bg-white", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           {
+  //             name: "20+", choice: false
+  //           },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-champagne-glasses.jpg",
+  //             alt: "Personalized champagne glasses",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       }
+  //     ],
+  //   },
+  //   {
+  //     id: "Customized",
+  //     name: "Customized",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fpersonalized.svg?alt=media&token=3155ac06-d4cc-4310-9472-0bc93dc06bac",
+  //     description: "Create a personalized gift for your loved ones.",
+  //     decorTypes: [
+  //       {
+  //         itemName: "Personalized Photo Frame",
+  //         description: "Treasure your memories with a personalized photo frame.",
+  //         price: 25.99,
+  //         giftKeywords: ["anniversary", "photo frame", "personalized"],
+  //         highlights: ["unique", "sentimental", "customizable"],
+  //         details: "Fits 4x6 inch photo, available in 3 colors.",
+  //         colors: [
+  //           { name: "Black", class: "bg-black", selectedClass: "ring-gray-400" },
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Walnut", class: "bg-walnut", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-photo-frame-black.jpg",
+  //             alt: "Personalized photo frame in black",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-white.jpg",
+  //             alt: "Personalized photo frame in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Date Night Jar",
+  //         description: "Bring some excitement to your date nights with our date night jar.",
+  //         price: 19.99,
+  //         giftKeywords: ["anniversary", "date night", "excitement"],
+  //         highlights: ["fun", "romantic", "customizable"],
+  //         details: "Comes with 50 date ideas, available in 2 colors.",
+  //         colors: [
+  //           { name: "Red", class: "bg-red-500", selectedClass: "ring-gray-400" },
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "date-night-jar-red.jpg",
+  //             alt: "Date night jar in red",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "date-night-jar-pink.jpg",
+  //             alt: "Date night jar in pink",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Personalized Champagne Glasses",
+  //         description: "Toast to your love with our personalized champagne glasses.",
+  //         price: 29.99,
+  //         giftKeywords: ["anniversary", "champagne", "personalized"],
+  //         highlights: ["elegant", "romantic", "customizable"],
+  //         details: "Engraved with your names and anniversary date, set of 2 glasses.",
+  //         colors: [
+  //           { name: "Clear", class: "bg-white", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           {
+  //             name: "20+", choice: false
+  //           },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-champagne-glasses.jpg",
+  //             alt: "Personalized champagne glasses",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       }
+  //     ],
+  //   },
+  //   {
+  //     id: "Hampers",
+  //     name: "Hampers",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fhamper.svg?alt=media&token=c9510349-973f-40b5-9240-96b914355c3d",
+  //     description: "Treat them with our carefully curated hampers.",
+  //     decorTypes: [
+  //       {
+  //         itemName: "Personalized Photo Frame",
+  //         description: "Treasure your memories with a personalized photo frame.",
+  //         price: 25.99,
+  //         giftKeywords: ["anniversary", "photo frame", "personalized"],
+  //         highlights: ["unique", "sentimental", "customizable"],
+  //         details: "Fits 4x6 inch photo, available in 3 colors.",
+  //         colors: [
+  //           { name: "Black", class: "bg-black", selectedClass: "ring-gray-400" },
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Walnut", class: "bg-walnut", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-photo-frame-black.jpg",
+  //             alt: "Personalized photo frame in black",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-white.jpg",
+  //             alt: "Personalized photo frame in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Date Night Jar",
+  //         description: "Bring some excitement to your date nights with our date night jar.",
+  //         price: 19.99,
+  //         giftKeywords: ["anniversary", "date night", "excitement"],
+  //         highlights: ["fun", "romantic", "customizable"],
+  //         details: "Comes with 50 date ideas, available in 2 colors.",
+  //         colors: [
+  //           { name: "Red", class: "bg-red-500", selectedClass: "ring-gray-400" },
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "date-night-jar-red.jpg",
+  //             alt: "Date night jar in red",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "date-night-jar-pink.jpg",
+  //             alt: "Date night jar in pink",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Personalized Champagne Glasses",
+  //         description: "Toast to your love with our personalized champagne glasses.",
+  //         price: 29.99,
+  //         giftKeywords: ["anniversary", "champagne", "personalized"],
+  //         highlights: ["elegant", "romantic", "customizable"],
+  //         details: "Engraved with your names and anniversary date, set of 2 glasses.",
+  //         colors: [
+  //           { name: "Clear", class: "bg-white", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           {
+  //             name: "20+", choice: false
+  //           },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-champagne-glasses.jpg",
+  //             alt: "Personalized champagne glasses",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       }
+  //     ],
+  //   },
+  //   {
+  //     id: "Surprises",
+  //     name: "Surprises",
+  //     icon: "https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/Categories%2Fsurprise.svg?alt=media&token=765cc65e-3d83-446c-8cc3-50d0b4f051ba",
+  //     description: "Surprise them with our unique gifts and experiences.",
+  //     decorTypes: [
+  //       {
+  //         itemName: "Personalized Photo Frame",
+  //         description: "Treasure your memories with a personalized photo frame.",
+  //         price: 25.99,
+  //         giftKeywords: ["anniversary", "photo frame", "personalized"],
+  //         highlights: ["unique", "sentimental", "customizable"],
+  //         details: "Fits 4x6 inch photo, available in 3 colors.",
+  //         colors: [
+  //           { name: "Black", class: "bg-black", selectedClass: "ring-gray-400" },
+  //           { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //           { name: "Walnut", class: "bg-walnut", selectedClass: "ring-gray-900" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-photo-frame-black.jpg",
+  //             alt: "Personalized photo frame in black",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-white.jpg",
+  //             alt: "Personalized photo frame in white",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "personalized-photo-frame-walnut.jpg",
+  //             alt: "Personalized photo frame in walnut",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Date Night Jar",
+  //         description: "Bring some excitement to your date nights with our date night jar.",
+  //         price: 19.99,
+  //         giftKeywords: ["anniversary", "date night", "excitement"],
+  //         highlights: ["fun", "romantic", "customizable"],
+  //         details: "Comes with 50 date ideas, available in 2 colors.",
+  //         colors: [
+  //           { name: "Red", class: "bg-red-500", selectedClass: "ring-gray-400" },
+  //           { name: "Pink", class: "bg-pink-500", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           { name: "20+", choice: false },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "date-night-jar-red.jpg",
+  //             alt: "Date night jar in red",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //           {
+  //             src: "date-night-jar-pink.jpg",
+  //             alt: "Date night jar in pink",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         itemName: "Personalized Champagne Glasses",
+  //         description: "Toast to your love with our personalized champagne glasses.",
+  //         price: 29.99,
+  //         giftKeywords: ["anniversary", "champagne", "personalized"],
+  //         highlights: ["elegant", "romantic", "customizable"],
+  //         details: "Engraved with your names and anniversary date, set of 2 glasses.",
+  //         colors: [
+  //           { name: "Clear", class: "bg-white", selectedClass: "ring-gray-400" },
+  //         ],
+  //         attendants: [
+  //           { name: "5", choice: true },
+  //           { name: "10", choice: false },
+  //           {
+  //             name: "20+", choice: false
+  //           },
+  //         ],
+  //         imageSet: [
+  //           {
+  //             src: "personalized-champagne-glasses.jpg",
+  //             alt: "Personalized champagne glasses",
+  //             css: "w-40 h-40 object-cover rounded-md",
+  //           },
+  //         ],
+  //       }
+  //     ],
+  //   },
+  // ];
 
-// import Products from "./dashboard/components/Products";
-// import Dashboardcategories from "./dashboard/components/Dashboardcategories";
-// import Promotions from "./dashboard/components/Promotions";
-// import Subscribers from "./dashboard/components/Subscribers";
-// import LoginLogs from "./dashboard/components/Loginlogs";
-// import Orders from "./dashboard/components/Orders";
+  // categories.forEach((category) => {
+  //   const categoryRef = collection(db, "Categories");
+  //   const categoryDocRef = doc(categoryRef, category.id);
+  //   setDoc(categoryDocRef, category)
+  //     .then(() => console.log(`Added ${category.id} category to Firestore`))
+  //     .catch((error) => console.error(error));
+  // });
 
 
 
 
-import { Addons } from './components/pages/Addons'
-import ShoppingCart from './components/pages/ShoppingCart'
-import SignIn from './components/pages/signIn'
-import SignUp from './components/pages/signUp'
-import Category from './components/Category'
-import Reviews from './components/Reviews'
-import Addon from './components/pages/Addon'
-export const OurContext = createContext()
-
-import app from './firebase'
-import { getFirestore } from "firebase/firestore";
-import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
-
-
-
-const Root = () => {
-
-
-  const db = getFirestore(app);
-
-  // const offersCollectionRef = collection(db, 'PromotionalOffers');
 
   // const offersData = [
   //   {
@@ -80,6 +633,38 @@ const Root = () => {
   //   await setDoc(doc(offersCollectionRef, offer.id), offer);
   // });
 
+
+
+import { createContext, useEffect, useState } from 'react'
+import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from 'react-router-dom'
+
+import App from './App'
+import ProductPage from './components/pages/ProductPage'
+import { Categories } from './components/pages/Categories'
+import PromotionalSlides from './components/pages/PromotionalSlides'
+import Error from './components/Error'
+import Ourcompany from "./components/pages/Ourcompany"
+
+import { Addons } from './components/pages/Addons'
+import ShoppingCart from './components/pages/ShoppingCart'
+import SignIn from './components/pages/signIn'
+import SignUp from './components/pages/signUp'
+import Category from './components/Category'
+export const OurContext = createContext()
+
+import app from './firebase'
+import { getFirestore } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
+
+
+
+const Root = () => {
+
+
+  const db = getFirestore(app);
+
+
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({ categories: [], addons: [], promotionalOffers: [] });
 
@@ -105,7 +690,6 @@ const Root = () => {
       });
   }, []);
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -114,30 +698,22 @@ const Root = () => {
 }
 
 
+// product and category id must be the causer problem
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<Error />}>
-      <Route path="/" element={<><PromotionalSlides /><Categories /><Addons /> </>} />
-      <Route path=':category' element={<><Category /><Addons /></>} >
-        <Route path=':product' element={<ProductPage />} />
-      </Route>
-      <Route path="about" element={<Ourcompany />} />
+      <Route exact path="/" element={<><PromotionalSlides /><Categories /><Addons /> </>} />
+      <Route exact path=':categoryId' element={<><Category /><Addons /></>} />
+      <Route path='/:categoryId/:productId' element={<ProductPage />} />
+
+      <Route exact path="about" element={<Ourcompany />} />
       <Route path='signin' element={<SignIn />} />
       <Route path='checkout' element={<ShoppingCart />} />
       <Route path='signup' element={<SignUp />} />
-      <Route path='product' element={<ProductPage />} />
-      {/* <Route path='admin' element={<Dashboard />} >
-        <Route path="/products" element={<Products products={products} removeProduct={removeProduct} />} />
-        <Route path="/categories" element={<Dashboardcategories categories={categories} addCategory={addCategory} />} />
-        <Route path="/promotions" element={<Promotions promotions={promotions} addPromotion={addPromotion} removePromotion={removePromotion} />} />
-        <Route path="/subscribers" element={<Subscribers subscribers={subscribers} addSubscriber={addSubscriber} />} />
-        <Route path="/login-logs" element={<LoginLogs loginLogs={loginLogs} addLoginLog={addLoginLog} />} />
-        <Route path="/orders" element={<Orders orders={orders} addOrder={addOrder} />} />
-      </Route> */}
     </Route>
+
   )
 );
-
 
 export default Root
 

@@ -8,18 +8,71 @@ import categoryImg12 from '../../assets/panaroma12.png'
 import { OurContext } from '../../Root'
 
 
+const product = {
+  name: 'Basic Tee 6-Pack',
+  price: '$192',
+  href: '#',
+  breadcrumbs: [
+    { id: 1, name: 'Men', href: '#' },
+    { id: 2, name: 'Clothing', href: '#' },
+  ],
+  images: [
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+      alt: 'Two each of gray, white, and black shirts laying flat.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      alt: 'Model wearing plain black basic tee.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      alt: 'Model wearing plain gray basic tee.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+      alt: 'Model wearing plain white basic tee.',
+    },
+  ],
+  colors: [
+    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
+    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+  ],
+  sizes: [
+    { name: 'XXS', inStock: false },
+    { name: 'XS', inStock: true },
+    { name: 'S', inStock: true },
+    { name: 'M', inStock: true },
+    { name: 'L', inStock: true },
+    { name: 'XL', inStock: true },
+    { name: '2XL', inStock: true },
+    { name: '3XL', inStock: true },
+  ],
+  description:
+    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+  highlights: [
+    'Hand cut and sewn locally',
+    'Dyed with our proprietary colors',
+    'Pre-washed & pre-shrunk',
+    'Ultra-soft 100% cotton',
+  ],
+  details:
+    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+}
+
+
+
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-// product info will also consist a a data and place where to have the function
-// add pay pal, add master card, and visa
 
-const Addon=()=> {
-const productList = useContext(OurContext)
-const product = productList[3]
+const Addon = () => {
+  // const productList = useContext(OurContext)
+  // const product = productList[3]
 
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
@@ -27,7 +80,7 @@ const product = productList[3]
   const [currentImage, setCurrentImage] = useState(0)
 
   const editArray = (arrayIndex) => {
-    product.images.forEach((element, index)=> element.css = "hidden")
+    product.images.forEach((element, index) => element.css = "hidden")
     product.images[arrayIndex].css = 'block h-96'
     setCurrentImage(arrayIndex)
   }
@@ -69,17 +122,17 @@ const product = productList[3]
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl gallery-height sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-2 lg:gap-2 lg:px-8">
 
-        {product.images.map((img, index) => <div key={index} id={index} className={`overflow-hidden lg:block movingIn lg:rounded-lg ${img.css}`} >
+          {product.images.map((img, index) => <div key={index} id={index} className={`overflow-hidden lg:block movingIn lg:rounded-lg ${img.css}`} >
             <img src={img.src} alt={img.alt} className="h-full w-full object-cover object-center" />
           </div>)}
 
         </div>
         <div className='lg:hidden sm:px-6 flex mt-0.5 mx-auto'>
-          {product.images.map((thumb, index)=> <div key={index} id={index} className="p-0.5 foc" onClick={()=> editArray(index)}> 
-          <img className='rounded-1xl h-full w-full object-cover object-center' src={thumb.src} alt="clickable" />
-          </div> 
-           )}
+          {product.images.map((thumb, index) => <div key={index} id={index} className="p-0.5 foc" onClick={() => editArray(index)}>
+            <img className='rounded-1xl h-full w-full object-cover object-center' src={thumb.src} alt="clickable" />
           </div>
+          )}
+        </div>
 
 
         {/* Product info */}
@@ -101,7 +154,7 @@ const product = productList[3]
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={classNames(reviews.average > rating ? 'text-gray-900' : 'text-gray-200','h-5 w-5 flex-shrink-0')}
+                      className={classNames(reviews.average > rating ? 'text-gray-900' : 'text-gray-200', 'h-5 w-5 flex-shrink-0')}
                       aria-hidden="true"
                     />
                   ))}
@@ -119,7 +172,7 @@ const product = productList[3]
               {/* Colors */}
               <div>
 
-               <h3 className="text-sm font-medium text-gray-900">Color</h3>
+                <h3 className="text-sm font-medium text-gray-900">Color</h3>
                 <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4">
                   <RadioGroup.Label className="sr-only"> Choose a color </RadioGroup.Label>
                   <div className="flex items-center space-x-3">
@@ -265,3 +318,25 @@ const product = productList[3]
   )
 }
 export default Addon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

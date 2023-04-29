@@ -6,6 +6,8 @@ import companyImage from '../../assets/banner.jpg';
 import founderImage from '../../assets/panaroma.jpg';
 
 const Ourcompany = () => {
+  
+
   return (
  <div className="bg-white">
         <div className="mx-auto max-w-7xl py-12 sm:px-6 sm:py-32 lg:px-8">

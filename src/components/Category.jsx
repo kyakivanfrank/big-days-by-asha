@@ -2,15 +2,10 @@ import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import { OurContext } from "../Root"
 
-
-
 export default function Category() {
 
-  const data = useContext(OurContext)
-
-  const { category: categoryparams } = useParams()
-
-  const { description, icon, id, name, decorTypes } = data.categories.find(item => item.id === categoryparams)
+  const { categoryId: categoryparams } = useParams()
+  const { description, name, decorTypes } = useContext(OurContext).categories.find(category => category=> category.id === categoryId)
 
   return (
     <div className="bg-gray-100">
@@ -20,7 +15,7 @@ export default function Category() {
           <h2 className="text-2xl  text-gray-900">{name}</h2>
           <h4 className="text-md pb-4 sm:pb-8 text-gray-600 ">{description}</h4>
 
-
+          {/* bread crumbs */}
           <nav aria-label="Breadcrumb">
             <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2  lg:max-w-7xl">
               <li>
@@ -40,8 +35,6 @@ export default function Category() {
                   </svg>
                 </div>
               </li>
-
-
               <li className="text-sm"><Link to={`#`} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">{name}</Link></li>
             </ol>
           </nav>
@@ -50,7 +43,7 @@ export default function Category() {
             {decorTypes.map(({ itemName, price, description, image }, index) => (
               <div key={index} className="group relative">
                 <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                <h1 className="absolute z-2 text-2xl bottom-2 right-4">AED {price}</h1>
+                  <h1 className="absolute z-2 text-2xl bottom-2 right-4">AED {price}</h1>
                   <img
                     src={image}
                     alt={itemName}
