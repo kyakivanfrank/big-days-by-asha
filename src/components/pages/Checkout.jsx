@@ -50,7 +50,7 @@ const products = [
   // More products...
 ]
 
-const ShoppingCart = () => {
+const Checkout = () => {
   const [open, setOpen] = useState(true)
 
   return (
@@ -174,4 +174,4 @@ const ShoppingCart = () => {
   )
 }
 
-export default ShoppingCart;
+export default Checkout;
