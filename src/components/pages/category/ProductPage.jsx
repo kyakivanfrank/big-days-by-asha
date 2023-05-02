@@ -2,7 +2,8 @@ import { useState, useContext } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 
-import { OurContext } from '../../Root'
+import { OurContext } from "../../../Root"
+
 
 import { Link, useParams } from 'react-router-dom'
 
@@ -13,9 +14,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const ProductPage = () => {
+export default function ProductPage () {
   const params = useParams()
-  // console.log(params)
 
   const selectedCategory = useContext(OurContext).categories.find(item => item.id === params.categoryId)
 
@@ -257,4 +257,3 @@ const ProductPage = () => {
   </div>
 
 }
-export default ProductPage;

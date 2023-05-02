@@ -1,102 +1,105 @@
-
-
-.reveala{
-    border: 3px solid red
+.reveala {
+  border: 3px solid red
 }
 
-.bd-line{
-border-top: 1px solid #02250238;
+.bd-line {
+  border-top: 1px solid #02250238;
 }
 
-.burger{
-margin-top: -5px;
-margin-left: -10px;
+.burger {
+  margin-top: -5px;
+  margin-left: -10px;
 }
 
-.ul-inside{font-size: smaller;
+.ul-inside {
+  font-size: smaller;
 }
 
 
 
 @media (min-width: 976px) {
-    .gallery-height {
-        height:42rem;
-    }
-  
+  .gallery-height {
+    height: 42rem;
+  }
+
 }
 
 @media (min-width: 768px) {
-    .h-addon{
-        height: 40rem;
-    }
-  
+  .h-addon {
+    height: 40rem;
+  }
+
 }
 
 @media (min-width: 480px) {
-    .h-addon{
-        height: 8rem;
-    }
-  
+  .h-addon {
+    height: 8rem;
+  }
+
 }
 
 @keyframes mvIn {
-    0% {transform: translateX(-100px)}
-  100% {transform: translateX(0)}
+  0% {
+    transform: translateX(-100px)
+  }
+
+  100% {
+    transform: translateX(0)
+  }
 }
 
-.movingIn{
-    animation: mvIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: 2s all;
-}
-
-
-.foc:active, .foc:active, .foc:visited{
-mix-blend-mode: luminosity
-}
-
-.text-overflow{
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis
+.movingIn {
+  animation: mvIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 2s all;
 }
 
 
-.h-addon{
-    height: 40rem;
+.foc:active,
+.foc:active,
+.foc:visited {
+  mix-blend-mode: luminosity
 }
 
-.imgHue{
-    filter: hue-rotate(130deg);
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
-#hide-view{
-    display: none;
+
+.h-addon {
+  height: 40rem;
 }
 
+.imgHue {
+  filter: hue-rotate(130deg);
+}
 
-
+#hide-view {
+  display: none;
+}
 
 
 .icon-start {
-    animation: zoom-in 0.5s ease-in-out, fade-in 0.5s ease-in-out;
-  }
-  
-
+  animation: zoom-in 0.5s ease-in-out, fade-in 0.5s ease-in-out;
+}
 
 @keyframes zoom-in {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
+  from {
+    transform: scale(0);
   }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+
+  to {
+    transform: scale(1);
   }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

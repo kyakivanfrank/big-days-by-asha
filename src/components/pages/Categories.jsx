@@ -10,7 +10,7 @@ export const Categories = () => {
 
   return <div className="bg-gray-100">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl py-6 lg:max-w-none lg:py-8">
+      <div className="mx-auto max-w-2xl py-6 lg:max-w-none lg:py-4">
         <div className="mt-6  lg:flex mx-auto grid grid-cols-3 lg:gap-3 gap-2 justify-center">
           {categories.map((category, index) => <div key={index} className={`p-0 lg:p-5 hover:-translate-y-1 grayscale-30 opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-all shadow-lg bg-white rounded-lg ${category.css}`}>
             <Link to={`${category.id}`}>

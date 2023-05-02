@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
-import { OurContext } from "../Root"
+import { OurContext } from "../../../Root"
 import CategoryImgFader from "./CategoryImgFader"
 
 export default function Category() {

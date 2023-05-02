@@ -2,7 +2,7 @@ import { LuseStateockClosedIcon } from '@heroicons/react/20/solid'
 import React, { useRef } from 'react'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from 'react-router-dom';
-import app from '../../firebase';
+import app from '../../../firebase';
 
 
 const SignUp = () => {

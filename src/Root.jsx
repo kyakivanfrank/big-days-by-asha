@@ -1,28 +1,25 @@
-
-
-
 import { createContext, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom'
 
 import App from './App'
-import ProductPage from './components/pages/ProductPage'
+
 import { Categories } from './components/pages/Categories'
-import PromotionalSlides from './components/pages/PromotionalSlides'
+import ProductPage from './components/pages/category/ProductPage'
 import Error from './components/Error'
 import Ourcompany from "./components/pages/Ourcompany"
+import { Addons } from './components/pages/addons/Addons'
 
-import { Addons } from './components/pages/Addons'
-import SignIn from './components/pages/signIn'
-import SignUp from './components/pages/signUp'
-import Category from './components/Category'
+import Category from './components/pages/category/Category'
+import Promotions from './components/pages/Promotions'
+
 export const OurContext = createContext()
 
 import app from './firebase'
 import { getFirestore } from "firebase/firestore";
 import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
 import Checkout from './components/pages/Checkout'
-
-
+import SignUp from './components/pages/signin/signUp'
+import SignIn from './components/pages/signin/signIn'
 
 const Root = () => {
 
@@ -815,6 +812,53 @@ const Root = () => {
 
 
 
+  // const offersData = [
+  //   {
+  //     itemName: 'Christmas',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FBirthday_main_banner.jpg?alt=media&token=97cd8b7d-9fb3-46a6-8398-473643d940fa'
+  //   },
+  //   {
+  //     itemName: 'happy Mothers, day',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FMain_banner_Birthday.jpg?alt=media&token=587e071b-3684-42fd-9e1d-124f8866985e'
+  //   },
+  //   {
+  //     itemName: 'Happy Easter',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FBirthday_main_banner.jpg?alt=media&token=97cd8b7d-9fb3-46a6-8398-473643d940fa'
+  //   },
+  //   {
+  //     itemName: 'Happy birthday',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FMain_banner_Birthday.jpg?alt=media&token=587e071b-3684-42fd-9e1d-124f8866985e'
+  //   },
+  //   {
+  //     itemName: 'More Gifts This Diwali',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FMothers_day.jpg?alt=media&token=5f469a95-51e9-410f-8656-f82027404041'
+  //   },
+  //   {
+  //     itemName: 'Happy new years eve',
+  //     description: 'Get 30% off on all Christmas-themed products!',
+  //     price: 50.0,
+  //     image: 'https://firebasestorage.googleapis.com/v0/b/big-days-by-asha-99224.appspot.com/o/banners%2FMothers_day.jpg?alt=media&token=5f469a95-51e9-410f-8656-f82027404041'
+  //   }
+  // ];
+
+  // offersData.forEach(async (offer) => {
+  //   const docRef = await addDoc(collection(db, "PromotionalOffers"), offer);
+  //   console.log("Document written with ID: ", docRef.id);
+  // });
+
+
+
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({ categories: [], addons: [], promotionalOffers: [] });
 
@@ -847,13 +891,12 @@ const Root = () => {
   return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
 }
 
-
 // first buid the searchbutton and the floating pop up box, then the shopping bag, the process to add the data 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<Error />}>
-      <Route exact path="/" element={<><PromotionalSlides /><Categories /><Addons /> </>} />
+      <Route exact path="/" element={<><Promotions /><Categories /><Addons /> </>} />
       <Route path=':categoryId' element={<><Category /><Addons /></>} />
       <Route path='/:categoryId/:productId' element={<ProductPage />} />
       <Route exact path="about" element={<Ourcompany />} />
