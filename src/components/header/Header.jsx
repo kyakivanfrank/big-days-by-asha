@@ -7,11 +7,16 @@ import {
   CursorArrowRaysIcon,
   FingerPrintIcon,
   SquaresPlusIcon,
+  ShoppingBagIcon,
   XMarkIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
 import { OurContext } from "../../Root"
+
+
+
 
 
 
@@ -110,21 +115,20 @@ const Header = () => {
           </Transition>
         </Popover>
 
-        <Link to={`/about`} className="text-sm font-semibold leading-6 text-gray-900">
+        {/* <input type='text' className='w-80 h-10 border-slate-500' /> */}
+        {/* <Link to={`/about`} className="text-sm font-semibold leading-6 text-gray-900">
           Our company
-        </Link>
+        </Link> */}
       </Popover.Group>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <MagnifyingGlassIcon className="h-6 w-6 mr-6 align-middle" aria-hidden="true" />
+        <ShoppingBagIcon className="h-6 w-6 mr-6 align-middle" aria-hidden="true" />
+
         <Link to={'/signin'} className="text-sm font-semibold leading-6 text-gray-900">
           Log in <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>
     </nav>
-
-
-
-
-
 
     {/* small screens button starts here */}
 
@@ -166,7 +170,7 @@ const Header = () => {
                     <Disclosure.Panel className="mt-2 space-y-2 bg-gray-50">
                       {[...categories
                         // , ...callsToAction
-                      ].map(({name}) => (
+                      ].map(({ name }) => (
                         <Disclosure.Button key={name} as="a"
                           href={name} className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-10">
                           {name}

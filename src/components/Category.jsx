@@ -1,11 +1,17 @@
 import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import { OurContext } from "../Root"
+import CategoryImgFader from "./CategoryImgFader"
 
 export default function Category() {
 
+
+
   const { categoryId: categoryparams } = useParams()
-  const { description, name, decorTypes } = useContext(OurContext).categories.find(category => category=> category.id === categoryId)
+  const arr = useContext(OurContext).categories.filter(category => category.id === categoryparams)
+  const { description, name, decorTypes } = arr[0]
+
+
 
   return (
     <div className="bg-gray-100">
@@ -40,16 +46,11 @@ export default function Category() {
           </nav>
 
           <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-            {decorTypes.map(({ itemName, price, description, image }, index) => (
+            {decorTypes.map(({ itemName, price, description, imageSet }, index) => (
               <div key={index} className="group relative">
-                <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                  <h1 className="absolute z-2 text-2xl bottom-2 right-4">AED {price}</h1>
-                  <img
-                    src={image}
-                    alt={itemName}
-                    className="h-full w-full object-cover object-center"
-                  />
-
+                <div id="get" className="relative w-full overflow-hidden rounded-lg shadow-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                  <h1 className="absolute z-10 font-bold text-2xl bottom-2 right-4">AED {price}</h1>
+                  <CategoryImgFader imageSet={imageSet} />
                 </div>
                 <h3 className="mt-6 text-sm text-gray-500">
                   <Link to={`${itemName}`}>

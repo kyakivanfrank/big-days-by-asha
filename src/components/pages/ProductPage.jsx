@@ -21,21 +21,18 @@ const ProductPage = () => {
 
   const selectedProduct = selectedCategory.decorTypes.find(item => item.itemName === params.productId)
 
-
   const [selectedColor, setSelectedColor] = useState(selectedProduct.colors[0])
   const [attendance, setattendance] = useState(selectedProduct.attendants[0])
   const [currentImage, setCurrentImage] = useState(0)
 
 
-  const breadcrumbz = [{ name: selectedCategory.name, href: `http://localhost:5173/${selectedCategory.name}` }]
+  const breadcrumbz = [{ name: selectedCategory.name, href: `https://big-days-by-asha.com/${selectedCategory.name}` }]
 
   const editArray = (arrayIndex) => {
     selectedProduct.imageSet.forEach((element, index) => element.css = "hidden")
     selectedProduct.imageSet[arrayIndex].css = 'block h-96'
     setCurrentImage(arrayIndex)
   }
-
-
 
   return <div className="bg-white">
     <div className="pt-6">
@@ -83,7 +80,7 @@ const ProductPage = () => {
         {/* Options */}
         <div className="mt-4 lg:row-span-3 lg:mt-0">
           <h2 className="sr-only">Product information</h2>
-          <p className="text-3xl tracking-tight text-gray-900">{selectedProduct.price}</p>
+          <p className="text-3xl tracking-tight text-gray-900">AED {selectedProduct.price}</p>
 
           {/* Reviews */}
           <div className="mt-6">
