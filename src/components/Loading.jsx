@@ -8,7 +8,7 @@ import red from '../assets/logo pieces/spinner/red.svg'
 export default function Loading() {
     return (
        
- <div className='gradCheck h-screen w-screen'>
+ <div className='gradCheck load-spinner h-screen w-screen'>
 
 
 <div className='middled  mx-auto my-auto rounded-xl absolute inset-x-20 inset-y-2 flex-col'>
