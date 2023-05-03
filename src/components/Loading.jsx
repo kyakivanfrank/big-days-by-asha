@@ -18,7 +18,7 @@ export default function Loading() {
         <h5 className='text-lg font-bold pl-2 text-center'>We create, you celebrate</h5>
     </div>
 
-    <div class="relative pt-10 w-20 mx-auto">
+    <div id='spinner' class="relative pt-10 w-20 load-spinner mx-auto">
         <img id="blue-spinner" className=" absolute animate-spin-slow" src={blue} />
         <img id="green-spinner" className="absolute animate-spin-medium" src={green} />
         <img id="red-spinner" className=" absolute animate-spin-fast" src={red} />
