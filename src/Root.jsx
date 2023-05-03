@@ -20,12 +20,11 @@ import { collection, doc, getDocs, addDoc, setDoc } from "firebase/firestore";
 import Checkout from './components/pages/Checkout'
 import SignUp from './components/pages/signin/signUp'
 import SignIn from './components/pages/signin/signIn'
+import Loading from './components/Loading'
 
 const Root = () => {
 
-
   const db = getFirestore(app);
-
 
   // const categories = [
   //   {
@@ -885,7 +884,9 @@ const Root = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <>
+      <Loading />
+    </>;
   }
 
   return <OurContext.Provider value={data}><RouterProvider router={router} /></OurContext.Provider>
@@ -903,6 +904,7 @@ const router = createBrowserRouter(
       <Route path='signin' element={<SignIn />} />
       <Route path='signup' element={<SignUp />} />
       <Route path='checkout' element={<Checkout />} />
+
     </Route>
   )
 );

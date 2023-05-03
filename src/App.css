@@ -103,3 +103,100 @@
     opacity: 1;
   }
 }
+
+
+.gradCheck {
+  background: #F7F8F8;
+  /* fallback for old browsers */
+  background: -webkit-radial-gradient(farthest-corner at 90% 05%, #f4f6fa, #8aafdf);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: radial-gradient(farthest-corner at 90% 05%, #f4f6fa, #8aafdf);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.middled {
+  /* width: 500px; */
+  /* height: 400px; */
+  border-radius: 50%;
+  /* background-color: white; */
+  /* box-shadow:  2px 53px 27px -35px #4a77b1; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerd {
+  text-align: center;
+  font-size: 2em;
+  margin: 0;
+}
+
+
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes spin-medium {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes spin-fast {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.9;
+  }
+}
+
+
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spin-medium 1s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: spin-fast 2s linear infinite;
+}
+
+
+.colorz {
+  width: 500px;
+
+}
